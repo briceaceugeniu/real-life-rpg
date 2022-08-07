@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Grid } from "@mui/material";
 import Header from "./Header";
 import AvatarArea from "./Avatar/AvatarArea";
 import ExperienceArea from "./Experience/ExperienceArea";
+import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
+  let navigate = useNavigate();
+  const [logSuccess, setLogSuccess] = useState(false);
+
+  useEffect(() => {
+    if (!logSuccess) navigate("/login");
+  });
+
   return (
     <Container maxWidth={false}>
       <Grid container spacing={1}>

@@ -1,12 +1,22 @@
 import React from "react";
-import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Login from "./components/Login";
 import MainPage from "./components/MainPage";
 
 function App() {
   return (
-    <div className="App">
-      <MainPage />
-    </div>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="*"
+        element={
+          <main style={{ padding: "1rem" }}>
+            <p>There's nothing here!</p>
+          </main>
+        }
+      />
+    </Routes>
   );
 }
 

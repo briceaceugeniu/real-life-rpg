@@ -10,7 +10,6 @@ import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import TipsAndUpdatesTwoToneIcon from "@mui/icons-material/TipsAndUpdatesTwoTone";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
-import { log } from "util";
 
 const numberInputProps = {
   min: 1,
@@ -79,7 +78,7 @@ const ExperienceForm = (props: any) => {
         fullWidth
         id="name-field"
         sx={{ m: 1 }}
-        inputProps={{ maxLength: 256 }}
+        inputProps={{ maxLength: 256, autoComplete: "off" }}
         label={`${label} name`}
         value={inputValues.name}
         variant="outlined"
