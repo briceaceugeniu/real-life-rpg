@@ -10,9 +10,11 @@ import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import TipsAndUpdatesTwoToneIcon from "@mui/icons-material/TipsAndUpdatesTwoTone";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import { log } from "util";
 
 const numberInputProps = {
   min: 1,
+  max: 9999,
 };
 
 const ExperienceForm = (props: any) => {
@@ -37,13 +39,22 @@ const ExperienceForm = (props: any) => {
     }
 
     if (target.id === "learned-field") {
-      setBubbleColor(target.value.length > 0 ? "gold" : "inherit");
+      setBubbleColor(target.value.trim().length > 0 ? "gold" : "inherit");
     }
 
     setInputValues((obj) => ({
       ...obj,
       [key]: target.type === "checkbox" ? target.checked : target.value,
     }));
+  };
+
+  const handleLearnedFocusIn = () => {
+    if (inputValues.learned.length === 0) {
+      setInputValues((obj) => ({ ...obj, learned: "\r" }));
+    }
+  };
+  const handleLearnedFocusOut = () => {
+    setInputValues((obj) => ({ ...obj, learned: inputValues.learned.trim() }));
   };
 
   const handleSaveBtnClicked = () => {
@@ -68,6 +79,7 @@ const ExperienceForm = (props: any) => {
         fullWidth
         id="name-field"
         sx={{ m: 1 }}
+        inputProps={{ maxLength: 256 }}
         label={`${label} name`}
         value={inputValues.name}
         variant="outlined"
@@ -80,6 +92,7 @@ const ExperienceForm = (props: any) => {
         value={inputValues.source}
         label="Source"
         variant="outlined"
+        inputProps={{ maxLength: 1024 }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -127,6 +140,9 @@ const ExperienceForm = (props: any) => {
         size="small"
         maxRows={4}
         value={inputValues.learned}
+        inputProps={{ maxLength: 60000 }}
+        onFocus={() => handleLearnedFocusIn()}
+        onBlur={() => handleLearnedFocusOut()}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">

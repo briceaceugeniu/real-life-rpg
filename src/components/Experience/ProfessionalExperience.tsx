@@ -22,7 +22,7 @@ const ProfessionalExperience = () => {
         bgcolor: "background.paper",
         display: "flex",
         height: 320,
-        width: "auto",
+        width: "100%",
         backgroundColor: "inherit",
         margin: 1,
       }}
