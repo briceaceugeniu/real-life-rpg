@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import WigArea from "./components/WigArea";
+import MainPage from "./components/MainPage";
 
 function App() {
   return (
     <div className="App">
-      <WigArea />
+      <MainPage />
     </div>
   );
 }

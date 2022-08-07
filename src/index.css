@@ -5,9 +5,73 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f8e8;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.header-txt {
+  font-family: monospace;
+  font-size: 1.25rem;
+}
+.d-flex {
+  display: flex;
+}
+
+.space-btwn {
+  justify-content: space-between;
+}
+
+.f-end {
+  justify-content: flex-end;
+}
+
+.f-d-col {
+  flex-direction: column;
+}
+
+.center-div {
+  justify-content: center;
+  align-items: center;
+}
+
+.font-xxl {
+  font-size: xxx-large;
+}
+
+.minH-60vh {
+  min-height: 60vh;
+  background-color: whitesmoke;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+
+.p-bar {
+  width: 60%;
+  height: 2rem;
+}
+
+.exp-nav {
+  background-color: inherit !important;
+  margin: 1rem;
+}
+
+.MuiTab-root {
+  text-transform: none !important;
+}
+
+.prof-forms {
+  /*overflow: scroll;*/
+  width: 100%;
+}
+
+.save-btn {
+/*  position: absolute;*/
+/*  left: 10px;*/
+/*  bottom: 10px;*/
+
+  margin: 10px;
 }
