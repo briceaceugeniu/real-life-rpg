@@ -1,5 +1,5 @@
 import { Button, Tab, Tabs } from "@mui/material";
-import CodeIcon from "@mui/icons-material/Code";
+import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import React from "react";
@@ -34,7 +34,7 @@ const ExperienceTypes = () => {
       >
         <Tab
           onClick={() => handleTabClick("prof")}
-          icon={<CodeIcon />}
+          icon={<BusinessCenterIcon />}
           label="Professional"
         />
         <Tab
@@ -49,9 +49,6 @@ const ExperienceTypes = () => {
         />
       </Tabs>
       <div>{expTypes[selTab]}</div>
-      <Button sx={{ margin: 1, minWidth: 120 }} variant="contained">
-        Save
-      </Button>
     </div>
   );
 };
