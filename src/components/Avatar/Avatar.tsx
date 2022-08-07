@@ -1,17 +1,20 @@
-import React from 'react';
+import React from "react";
+import { lennyFaces } from "../LennyFaces";
 
 const Avatar = () => {
-    return (
-        <div className={`d-flex f-d-col center-div`}>
-            <div className={`header-txt`}>
-                <span>Rekrut</span> Lenny
-            </div>
-            {/* prettier-ignore */}
-            <pre className={`font-xxl`}>{`
-( ͡❛ ͜ʖ ͡❛)✌
+  const face = lennyFaces[Math.floor(Math.random() * lennyFaces.length)];
+
+  return (
+    <div className={`d-flex f-d-col center-div`}>
+      <div className={`header-txt`}>
+        <span>Rekrut</span> Lenny
+      </div>
+      {/* prettier-ignore */}
+      <pre className={`font-xxl`}>{`
+${face}
         `}</pre>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Avatar;

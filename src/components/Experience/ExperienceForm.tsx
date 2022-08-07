@@ -27,15 +27,23 @@ const ExperienceForm = (props: any) => {
     isError: false,
     msg: "* - required",
   });
+  const [bubbleLightning, setBubbleColor] = useState("inherit");
 
   const label = props.label ? props.label : "Item";
 
-  const handleFieldChanged = (data: any, key: string) => {
-    if (nameError.isError) {
+  const handleFieldChanged = ({ target }: any, key: string) => {
+    if (target.id === "name-field" && nameError.isError) {
       setNameError({ isError: false, msg: "* - required" });
     }
 
-    setInputValues((obj) => ({ ...obj, [key]: data.target.value }));
+    if (target.id === "learned-field") {
+      setBubbleColor(target.value.length > 0 ? "gold" : "inherit");
+    }
+
+    setInputValues((obj) => ({
+      ...obj,
+      [key]: target.type === "checkbox" ? target.checked : target.value,
+    }));
   };
 
   const handleSaveBtnClicked = () => {
@@ -58,8 +66,8 @@ const ExperienceForm = (props: any) => {
         required
         onChange={(e) => handleFieldChanged(e, "name")}
         fullWidth
+        id="name-field"
         sx={{ m: 1 }}
-        id="outlined-basic"
         label={`${label} name`}
         value={inputValues.name}
         variant="outlined"
@@ -69,7 +77,6 @@ const ExperienceForm = (props: any) => {
         fullWidth
         onChange={(e) => handleFieldChanged(e, "source")}
         sx={{ m: 1 }}
-        id="outlined-basic"
         value={inputValues.source}
         label="Source"
         variant="outlined"
@@ -87,7 +94,6 @@ const ExperienceForm = (props: any) => {
             size="small"
             sx={{ m: 1 }}
             onChange={(e) => handleFieldChanged(e, "count")}
-            id="outlined-basic"
             label={props.count}
             variant="outlined"
             type="number"
@@ -116,6 +122,7 @@ const ExperienceForm = (props: any) => {
         sx={{ m: 1, height: 100 }}
         fullWidth
         multiline
+        id="learned-field"
         onChange={(e) => handleFieldChanged(e, "learned")}
         size="small"
         maxRows={4}
@@ -123,7 +130,7 @@ const ExperienceForm = (props: any) => {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <TipsAndUpdatesTwoToneIcon />
+              <TipsAndUpdatesTwoToneIcon sx={{ color: bubbleLightning }} />
             </InputAdornment>
           ),
         }}
