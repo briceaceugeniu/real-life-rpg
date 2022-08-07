@@ -7,7 +7,9 @@ const numberInputProps = {
   min: 1,
 };
 
-const ProfessionalBookForm = () => {
+const ExperienceForm = (props: any) => {
+  const label = props.label ? props.label : "Item";
+
   return (
     <div className={`prof-forms`}>
       <TextField
@@ -15,7 +17,7 @@ const ProfessionalBookForm = () => {
         fullWidth
         sx={{ m: 1 }}
         id="outlined-basic"
-        label="Book name"
+        label={`${label} name`}
         variant="outlined"
       />
       <TextField
@@ -33,15 +35,18 @@ const ProfessionalBookForm = () => {
           ),
         }}
       />
-      <TextField
-        size="small"
-        sx={{ m: 1 }}
-        id="outlined-basic"
-        label="Page number"
-        variant="outlined"
-        type="number"
-        inputProps={numberInputProps}
-      />
+      {props.count && (
+        <TextField
+          size="small"
+          sx={{ m: 1 }}
+          id="outlined-basic"
+          label={props.count}
+          variant="outlined"
+          type="number"
+          inputProps={numberInputProps}
+        />
+      )}
+
       <TextField
         label="Learned things"
         sx={{ m: 1 }}
@@ -61,4 +66,4 @@ const ProfessionalBookForm = () => {
   );
 };
 
-export default ProfessionalBookForm;
+export default ExperienceForm;

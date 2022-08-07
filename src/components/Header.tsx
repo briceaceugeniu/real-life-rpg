@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Container>
       <div className={`header-txt d-flex space-btwn`}>
-        <div>Real Life RPG Game (Portfolio) </div>
+        <div>Real Life RPG Game</div>
         <small>v 0.001 PreAlfa</small>
       </div>
     </Container>

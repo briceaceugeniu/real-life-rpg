@@ -4,6 +4,8 @@ import AddReactionIcon from "@mui/icons-material/AddReaction";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import React from "react";
 import ProfessionalExperience from "./ProfessionalExperience";
+import SoftSkillExperience from "./SoftSkillExperience";
+import FitnessExperience from "./FitnessExperience";
 
 const ExperienceTypes = () => {
   const [value, setValue] = React.useState(0);
@@ -19,8 +21,8 @@ const ExperienceTypes = () => {
 
   const expTypes: any = [];
   expTypes["prof"] = <ProfessionalExperience />;
-  expTypes["soft_skill"] = "ss";
-  expTypes["fitness"] = "fit";
+  expTypes["soft_skill"] = <SoftSkillExperience />;
+  expTypes["fitness"] = <FitnessExperience />;
 
   return (
     <div style={{ position: "relative" }}>
