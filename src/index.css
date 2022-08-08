@@ -42,6 +42,10 @@ code {
   font-size: xxx-large;
 }
 
+.font-mono {
+  font-family: monospace;
+}
+
 .minH-60vh {
   min-height: 60vh;
   background-color: whitesmoke;

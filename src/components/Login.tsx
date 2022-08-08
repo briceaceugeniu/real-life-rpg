@@ -21,12 +21,15 @@ const Login = () => {
         }}
         noValidate
       >
+        <h3 className={`font-mono`} style={{ margin: 8 }}>
+          Login
+        </h3>
         <TextField
           error={error.isError}
-          required
           id="email-input"
           label="Email"
           variant="standard"
+          type="email"
         />
         <TextField
           error={error.isError}
@@ -34,15 +37,22 @@ const Login = () => {
           label="Password"
           type="password"
           variant="standard"
-          required
           helperText={error.msg}
         />
         <Button variant="contained" size="small">
           Log in
         </Button>
-        <p style={{ fontFamily: "monospace" }}>
-          New here? <Link to="/register">Register!</Link>
-        </p>
+        <div
+          className={`d-flex space-btwn`}
+          style={{ fontFamily: "monospace" }}
+        >
+          <p>
+            New here? <Link to="/register">Register!</Link>
+          </p>
+          <p>
+            <Link to="/forgot-pass">Forgot Password?</Link>
+          </p>
+        </div>
       </Box>
     </Grid>
   );
