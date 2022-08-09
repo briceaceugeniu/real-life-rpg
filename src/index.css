@@ -85,3 +85,11 @@ code {
   border-radius: 6px;
   margin: 1px;
 }
+
+.m8 {
+  margin: 8px !important;
+}
+
+.fit-content {
+  max-width: fit-content;
+}

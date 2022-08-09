@@ -39,7 +39,11 @@ const Login = () => {
           variant="standard"
           helperText={error.msg}
         />
-        <Button variant="contained" size="small">
+        <Button
+          variant="contained"
+          className={`m8`}
+          onClick={() => alert("Work in progress...")}
+        >
           Log in
         </Button>
         <div

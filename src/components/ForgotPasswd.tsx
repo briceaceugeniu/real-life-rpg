@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const ForgotPasswd = () => {
   const [error, setError] = useState({ isError: false, msg: " " });
   let navigate = useNavigate();
 
@@ -18,13 +18,15 @@ const Register = () => {
         component="form"
         className={`d-flex f-d-col`}
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "40ch" },
+          "& .MuiTextField-root": { m: 1, width: "35ch" },
         }}
         noValidate
       >
-        <h3 className={`font-mono`} style={{ margin: 8 }}>
-          Register
-        </h3>
+        <h3 className={`font-mono m8`}>Forgot password</h3>
+        <small className={`font-mono m8 fit-content`}>
+          Please enter your email address so we can send you an email to reset
+          your password.
+        </small>
         <TextField
           error={error.isError}
           id="email-input"
@@ -32,37 +34,14 @@ const Register = () => {
           variant="standard"
           required
           type="email"
-        />
-        <TextField
-          error={error.isError}
-          id="email-input"
-          label="Displayed name"
-          variant="standard"
-          type="email"
-          required
-        />
-        <TextField
-          error={error.isError}
-          id="password-input"
-          label="Password"
-          type="password"
-          required
-          variant="standard"
-        />
-        <TextField
-          error={error.isError}
-          id="password-input"
-          label="Password Confirm"
-          type="password"
-          variant="standard"
-          required
           helperText={error.msg}
         />
-        <Button variant="contained" style={{ marginBottom: 6 }}>
-          Register
+        <Button variant="contained" className={`m8`}>
+          Submit
         </Button>
         <Button
           variant="contained"
+          className={`m8`}
           size="small"
           color="secondary"
           onClick={() => navigate("/login")}
@@ -74,4 +53,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ForgotPasswd;
