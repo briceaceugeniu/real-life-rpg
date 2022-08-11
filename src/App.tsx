@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import MainPage from "./components/MainPage";
 import Register from "./components/Register";
 import ForgotPasswd from "./components/ForgotPasswd";
+import EmailConfirmation from "./components/EmailConfirmation";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path="/" element={<MainPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/emlcnf" element={<EmailConfirmation />} />
       <Route path="/forgot-pass" element={<ForgotPasswd />} />
       <Route
         path="*"
