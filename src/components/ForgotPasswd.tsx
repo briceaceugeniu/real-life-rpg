@@ -29,7 +29,6 @@ const ForgotPasswd = () => {
         </small>
         <TextField
           error={error.isError}
-          id="email-input"
           label="Email"
           variant="standard"
           required
