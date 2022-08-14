@@ -1,8 +1,6 @@
 
 [
 +src/components/Experience/ExperienceNav.tsx,0\a\0a6396187c61e4a35c64592029a1cda6bd840a64
-G
-src/helper-functions.ts,5\2\52d2d25916695bce71ca5a2ce29d7ad13a94d504
 a
 1src/components/Experience/SoftSkillExperience.tsx,2\1\214056564e1654793082f3b703cc0d4158484d8a
 _

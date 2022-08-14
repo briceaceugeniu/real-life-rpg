@@ -6,6 +6,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 import axios from "axios";
 import { AlertColor } from "@mui/material/Alert/Alert";
+import { IsValidEmail } from "../helper-functions";
 
 interface InputProps {
   status: boolean;
@@ -80,8 +81,7 @@ const Register = () => {
   };
 
   const handleRegisterClicked = () => {
-    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    const correctEmailFormat = emailValue.match(mailformat) !== null;
+    const correctEmailFormat = IsValidEmail(emailValue);
 
     if (
       !correctEmailFormat ||

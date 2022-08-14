@@ -1,7 +1,6 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Alert, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 const EmailConfirmation = () => {
   const location = useLocation();
