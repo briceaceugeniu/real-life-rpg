@@ -1,13 +1,19 @@
 import React from "react";
 
-const Rank = () => {
+interface PropsInterface {
+  level: number;
+  rank_name: string;
+}
+
+const Rank = (props: PropsInterface) => {
+  const imgSrc = require(`./../../img/${props.level}.jpg`);
   return (
     <div className={`d-flex f-end`}>
       <span>
         <img
           className={`rank-img`}
-          src="https://www.bundesheer.at/abzeichen/images/rk/rekr.jpg"
-          alt="Rang: Rekrut"
+          src={imgSrc}
+          alt={`Rang: ${props.rank_name}`}
         />
       </span>
     </div>
