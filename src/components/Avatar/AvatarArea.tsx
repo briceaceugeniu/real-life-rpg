@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Rank from "./Rank";
 import Avatar from "./Avatar";
 import ProgressBar from "./ProgressBar";
@@ -19,14 +19,15 @@ interface UserParamInterface {
 }
 
 let userParam: UserParamInterface = {
-  name: "Lenny",
+  name: "_Lenny",
   rank: 1,
   exp: 0,
   next_level: 280,
-  rank_name: "Rekrut",
+  rank_name: "_Rekrut",
 };
 
 const AvatarArea = (props: PropsInterface) => {
+  const [userData, setUserData] = useState(userParam);
   let navigate = useNavigate();
 
   const KillTokenGoToLoginPage = () => {
@@ -47,7 +48,7 @@ const AvatarArea = (props: PropsInterface) => {
 
         if (data.status === "error") {
           console.error(data.msg);
-          // KillTokenGoToLoginPage();
+          KillTokenGoToLoginPage();
         } else if (data.status === "success") {
           const {
             next_level,
@@ -57,13 +58,13 @@ const AvatarArea = (props: PropsInterface) => {
             user_rank,
           } = data.data;
 
-          if (next_level && rank_name && user_exp && user_name && user_rank) {
-            userParam.next_level = next_level;
-            userParam.rank_name = rank_name;
-            userParam.exp = user_exp;
-            userParam.name = user_name;
-            userParam.rank = user_rank;
-          }
+          setUserData({
+            next_level: next_level,
+            rank_name: rank_name,
+            exp: user_exp,
+            name: user_name,
+            rank: user_rank,
+          });
         } else {
           console.error("Invalid fetched data format.");
           KillTokenGoToLoginPage();
@@ -80,9 +81,9 @@ const AvatarArea = (props: PropsInterface) => {
 
   return (
     <div className={`minH-60vh`}>
-      <Rank level={userParam.rank} rank_name={userParam.rank_name} />
-      <Avatar name={userParam.name} rank_name={userParam.rank_name} />
-      <ProgressBar exp={userParam.exp} next_level={userParam.next_level} />
+      <Rank level={userData.rank} rank_name={userData.rank_name} />
+      <Avatar name={userData.name} rank_name={userData.rank_name} />
+      <ProgressBar exp={userData.exp} next_level={userData.next_level} />
     </div>
   );
 };
