@@ -1,43 +1,56 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { IsValidEmail } from "../helper-functions";
+import { API_BASE_URL, IsValidEmail } from "../helper-functions";
 import Cookies from "universal-cookie";
 
 const Login = () => {
   const [error, setError] = useState({ isError: false, msg: " " });
   const [credential, setCredential] = useState({ email: "", psswd: "" });
+  let navigate = useNavigate();
+
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    //todo if cookie with auth_token exist - redirect to main page
+    console.log(12344);
+  });
 
   const handleLogInClicked = () => {
     if (
-      credential.email.length === 0 ||
-      credential.psswd.length === 0 ||
+      credential.email.length < 5 ||
+      credential.psswd.length < 11 ||
       !IsValidEmail(credential.email)
     ) {
       setError({ isError: true, msg: "Invalid email or/and password." });
       return;
     }
-    //
+
     axios
-      .post("https://api.rubicon101.com/rlrpg_auth_user.php", {
+      .post(API_BASE_URL + "/rlrpg_auth_user.php", {
         email: credential.email,
         password: credential.psswd,
       })
       .then(function (response) {
-        console.log(response);
-
         if (response.data.status === "success") {
-          // TODO save token, redirect to main page
-          const cookies = new Cookies();
-          cookies.set("myCat", "Pacman", { path: "/" });
+          const d = new Date(response.data.valid_until);
+
+          cookies.set("auth_token", response.data.auth_token, {
+            path: "/",
+            expires: d,
+            secure: true,
+          });
+
+          navigate("/");
         } else if (response.data.status === "error") {
-          // display error
+          setError({ isError: true, msg: response.data.msg });
         } else {
-          // display general error
+          setError({ isError: false, msg: "Unknown error. Please try later." });
         }
       })
       .catch(function (err) {
+        setError({ isError: false, msg: "Unknown error. Please try later." });
         console.error(err);
       });
   };

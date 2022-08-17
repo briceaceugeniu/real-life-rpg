@@ -4,10 +4,10 @@ const ProgressBar = () => {
   return (
     <div className={`d-flex center-div f-d-col`}>
       <div style={{ marginTop: "4rem" }}>
-        <small>Exp: 0 / 100</small>
+        <small>Exp: 0 / 280</small>
       </div>
-      <progress className={`p-bar`} max={100} value={0}>
-        0
+      <progress className={`p-bar`} max={280} value={0}>
+        12
       </progress>
     </div>
   );

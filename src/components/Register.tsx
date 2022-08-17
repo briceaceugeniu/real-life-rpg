@@ -6,7 +6,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 import axios from "axios";
 import { AlertColor } from "@mui/material/Alert/Alert";
-import { IsValidEmail } from "../helper-functions";
+import { API_BASE_URL, IsValidEmail } from "../helper-functions";
 
 interface InputProps {
   status: boolean;
@@ -107,7 +107,7 @@ const Register = () => {
     setPasswordConfirmSuccess(defaultInput);
 
     axios
-      .post("https://api.rubicon101.com/rlrpg_register_user.php", {
+      .post(API_BASE_URL + "/rlrpg_register_user.php", {
         email: emailValue,
         name: nameSuccess.value,
         password1: passwordSuccess.value,

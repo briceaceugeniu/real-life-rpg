@@ -3,23 +3,28 @@ import { Container, Grid } from "@mui/material";
 import AvatarArea from "./Avatar/AvatarArea";
 import ExperienceArea from "./Experience/ExperienceArea";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const MainPage = () => {
   let navigate = useNavigate();
-  const [logSuccess, setLogSuccess] = useState(false);
+
+  const cookies = new Cookies();
+  const auth_token = cookies.get("auth_token");
 
   useEffect(() => {
-    if (!logSuccess) navigate("/login");
+    if (!auth_token) {
+      navigate("/login");
+    }
   });
 
   return (
     <Container maxWidth={false}>
       <Grid container spacing={1}>
         <Grid item xs={12} md={5}>
-          <AvatarArea />
+          <AvatarArea token={auth_token} />
         </Grid>
         <Grid item xs={12} md={7}>
-          <ExperienceArea />
+          <ExperienceArea token={auth_token} />
         </Grid>
       </Grid>
     </Container>
