@@ -16,13 +16,21 @@ const numberInputProps = {
   max: 9999,
 };
 
-const ExperienceForm = (props: any) => {
+interface PropsInterface {
+  label: string;
+  count?: "Minutes" | "Pages" | "Km";
+  exp_type: number;
+  exp_subtype: number;
+}
+
+const ExperienceForm = (props: PropsInterface) => {
   const [inputValues, setInputValues] = useState({
     name: "",
     source: "",
     count: "",
     private: false,
     learned: "",
+    count_type: props.count ?? null,
   });
   const [nameError, setNameError] = useState({
     isError: false,
@@ -119,7 +127,6 @@ const ExperienceForm = (props: any) => {
           control={
             <Checkbox
               size={`small`}
-              checked={props.private}
               onChange={(e) => handleFieldChanged(e, "private")}
               icon={<VisibilityOutlinedIcon />}
               checkedIcon={<VisibilityOffOutlinedIcon />}

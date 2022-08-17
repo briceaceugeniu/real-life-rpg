@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ExperienceNav from "./ExperienceNav";
 import ExperienceTypes from "./ExperienceTypes";
 import { Divider } from "@mui/material";
+import PastExperiences from "./PastExperiences";
 
 interface PropsInterface {
   token: string;
@@ -12,9 +13,9 @@ const ExperienceArea = (props: PropsInterface) => {
 
   return (
     <div className={`minH-60vh`}>
-      <ExperienceNav selectedNav={(e: any) => setExpNav(e)} />
+      <ExperienceNav selectedNav={(e: boolean) => setExpNav(e)} />
       <Divider />
-      {expNav ? <ExperienceTypes /> : <div>History stuff</div>}
+      {expNav ? <ExperienceTypes /> : <PastExperiences token={props.token} />}
     </div>
   );
 };

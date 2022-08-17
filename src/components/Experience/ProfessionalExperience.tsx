@@ -49,16 +49,26 @@ const ProfessionalExperience = () => {
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <ExperienceForm label={`Book`} count={`Pages`} />
+        <ExperienceForm
+          label={`Book`}
+          count={`Pages`}
+          exp_type={1}
+          exp_subtype={1}
+        />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <ExperienceForm label={`Tutorial`} count={`Minutes`} />
+        <ExperienceForm
+          label={`Tutorial`}
+          count={`Minutes`}
+          exp_type={1}
+          exp_subtype={2}
+        />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <ExperienceForm label={`Article`} />
+        <ExperienceForm label={`Article`} exp_type={1} exp_subtype={3} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <ExperienceForm label={`Presentation`} />
+        <ExperienceForm label={`Presentation`} exp_type={1} exp_subtype={4} />
       </TabPanel>
     </Box>
   );

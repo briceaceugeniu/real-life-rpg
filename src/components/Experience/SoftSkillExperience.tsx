@@ -39,7 +39,12 @@ const SoftSkillExperience = () => {
         <Tab icon={<MenuBookOutlinedIcon />} label="Book" {...a11yProps(0)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <ExperienceForm label={`Book`} count={`Pages`} />
+        <ExperienceForm
+          label={`Book`}
+          count={`Pages`}
+          exp_type={2}
+          exp_subtype={5}
+        />
       </TabPanel>
     </Box>
   );

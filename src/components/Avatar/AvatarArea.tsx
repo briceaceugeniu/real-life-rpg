@@ -36,6 +36,7 @@ const AvatarArea = (props: PropsInterface) => {
   };
 
   useEffect(() => {
+    return;
     axios
       .get(API_BASE_URL + "/rlrpg_fetch_user_data.php", {
         params: {
@@ -43,7 +44,6 @@ const AvatarArea = (props: PropsInterface) => {
         },
       })
       .then(function (response) {
-        console.log(response);
         const data = response.data;
 
         if (data.status === "error") {
@@ -77,7 +77,7 @@ const AvatarArea = (props: PropsInterface) => {
       .then(function () {
         // always executed
       });
-  });
+  }, []);
 
   return (
     <div className={`minH-60vh`}>

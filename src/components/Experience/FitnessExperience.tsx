@@ -43,7 +43,12 @@ const FitnessExperience = () => {
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <ExperienceForm label={`Ride`} count={`Km`} />
+        <ExperienceForm
+          label={`Ride`}
+          count={`Km`}
+          exp_type={3}
+          exp_subtype={6}
+        />
       </TabPanel>
     </Box>
   );
