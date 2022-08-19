@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 interface PropsInterface {
   token: string;
+  render: number;
 }
 
 interface UserParamInterface {
@@ -22,12 +23,13 @@ let userParam: UserParamInterface = {
   name: "_Lenny",
   rank: 1,
   exp: 0,
-  next_level: 280,
+  next_level: 500,
   rank_name: "_Rekrut",
 };
 
 const AvatarArea = (props: PropsInterface) => {
   const [userData, setUserData] = useState(userParam);
+
   let navigate = useNavigate();
 
   const KillTokenGoToLoginPage = () => {
@@ -36,11 +38,15 @@ const AvatarArea = (props: PropsInterface) => {
   };
 
   useEffect(() => {
-    return;
     axios
       .get(API_BASE_URL + "/rlrpg_fetch_user_data.php", {
         params: {
           auth_token: props.token,
+        },
+        headers: {
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+          Expires: "0",
         },
       })
       .then(function (response) {
@@ -77,7 +83,7 @@ const AvatarArea = (props: PropsInterface) => {
       .then(function () {
         // always executed
       });
-  }, []);
+  }, [props.render]);
 
   return (
     <div className={`minH-60vh`}>

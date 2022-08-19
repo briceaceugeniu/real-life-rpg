@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
+  Alert,
   Button,
   Checkbox,
   FormControlLabel,
   InputAdornment,
+  Snackbar,
   TextField,
 } from "@mui/material";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import TipsAndUpdatesTwoToneIcon from "@mui/icons-material/TipsAndUpdatesTwoTone";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import axios from "axios";
+import { API_BASE_URL } from "../../helper-functions";
+import Cookies from "universal-cookie";
+import { ChangedExpContext } from "../MainPage";
 
 const numberInputProps = {
   min: 1,
@@ -23,20 +29,40 @@ interface PropsInterface {
   exp_subtype: number;
 }
 
+interface InputValuesInterface {
+  name: string;
+  source: string;
+  count: number;
+  private: boolean;
+  learned: string;
+  count_type: "Minutes" | "Pages" | "Km" | null;
+  exp_type: number;
+  exp_subtype: number;
+}
+
 const ExperienceForm = (props: PropsInterface) => {
-  const [inputValues, setInputValues] = useState({
+  const formInitValues = {
     name: "",
     source: "",
-    count: "",
+    count: 1,
     private: false,
     learned: "",
     count_type: props.count ?? null,
-  });
+    exp_type: props.exp_type,
+    exp_subtype: props.exp_subtype,
+  };
+
+  const [inputValues, setInputValues] = useState<InputValuesInterface>(
+    formInitValues
+  );
+
   const [nameError, setNameError] = useState({
     isError: false,
     msg: "* - required",
   });
+
   const [bubbleLightning, setBubbleColor] = useState("inherit");
+  const [alertOpen, setAlertOpen] = useState({ open: false, exp: 0 });
 
   const label = props.label ? props.label : "Item";
 
@@ -64,6 +90,24 @@ const ExperienceForm = (props: PropsInterface) => {
     setInputValues((obj) => ({ ...obj, learned: inputValues.learned.trim() }));
   };
 
+  const ExperienceCalculator = (obj: InputValuesInterface) => {
+    let exp = 0;
+    let count_type: any = [];
+    count_type["Minutes"] = 0.75;
+    count_type["Pages"] = 1;
+    count_type["Km"] = 2;
+
+    if (obj.name) exp += 50;
+    if (obj.source) exp += 30;
+    if (obj.count > 0 && obj.count_type !== null)
+      exp += obj.count * count_type[obj.count_type];
+    if (obj.learned) exp += obj.learned.length;
+
+    return Math.ceil(exp);
+  };
+
+  const { render, setRender } = useContext(ChangedExpContext);
+
   const handleSaveBtnClicked = () => {
     if (!inputValues.name) {
       setNameError({
@@ -72,11 +116,55 @@ const ExperienceForm = (props: PropsInterface) => {
       });
       return;
     }
-    console.log(inputValues);
+
+    const cookies = new Cookies();
+    const auth_token = cookies.get("auth_token");
+
+    const completeData = { ...inputValues, auth_token: auth_token };
+
+    const gainedExp = ExperienceCalculator(inputValues);
+    console.log(completeData);
+
+    axios
+      .post(API_BASE_URL + "/rlrpg_save_exp.php", completeData)
+      .then(function (response) {
+        console.log(response);
+        if (response.data.status === "success") {
+          setInputValues(formInitValues);
+          setAlertOpen({ open: true, exp: response.data.exp_pt });
+          setRender(render + 1);
+        } else if (response.data.status === "error") {
+          console.error(response.data.msg);
+        } else {
+          console.error("Unknown error");
+        }
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
   };
+
+  function handleClose() {
+    setAlertOpen({ ...alertOpen, open: false });
+  }
 
   return (
     <div className={`prof-forms`}>
+      <Snackbar
+        open={alertOpen.open}
+        autoHideDuration={5000}
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
+        onClose={() => handleClose()}
+      >
+        <Alert
+          onClose={() => handleClose()}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          <span style={{ fontWeight: "bold" }}> + {alertOpen.exp} EXP</span>
+        </Alert>
+      </Snackbar>
+
       <TextField
         error={nameError.isError}
         helperText={nameError.msg}

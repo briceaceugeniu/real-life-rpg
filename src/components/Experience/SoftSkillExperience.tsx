@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Tab, Tabs } from "@mui/material";
 import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
+import MicIcon from "@mui/icons-material/Mic";
 import ExperienceForm from "./ExperienceForm";
 import TabPanel from "./TabPanel";
 import { a11yProps } from "../../helper-functions";
@@ -37,6 +38,7 @@ const SoftSkillExperience = () => {
         }}
       >
         <Tab icon={<MenuBookOutlinedIcon />} label="Book" {...a11yProps(0)} />
+        <Tab icon={<MicIcon />} label="Podcast" {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <ExperienceForm
@@ -44,6 +46,14 @@ const SoftSkillExperience = () => {
           count={`Pages`}
           exp_type={2}
           exp_subtype={5}
+        />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <ExperienceForm
+          label={`Podcast`}
+          count={`Minutes`}
+          exp_type={2}
+          exp_subtype={7}
         />
       </TabPanel>
     </Box>
