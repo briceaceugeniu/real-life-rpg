@@ -33,7 +33,7 @@ const AvatarArea = (props: PropsInterface) => {
   let navigate = useNavigate();
 
   const KillTokenGoToLoginPage = () => {
-    // TODO kill token session
+    // TODO kill token session bla
     navigate("/login");
   };
 
