@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "@mui/material";
+import { Container, Tooltip } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Header = () => {
@@ -13,14 +13,18 @@ const Header = () => {
         <div>Real Life RPG Game</div>
         <div className={`d-flex center-div`}>
           <small>v 0.01 Alfa</small>
-          <GitHubIcon
-            sx={{ marginLeft: "10px" }}
-            color={`action`}
-            className={`github-icon`}
-            onClick={() =>
-              openInNewTab("https://github.com/briceaceugeniu/real-life-rpg-UI")
-            }
-          />
+          <Tooltip title={`Visit the project on Github`}>
+            <GitHubIcon
+              sx={{ marginLeft: "10px" }}
+              color={`action`}
+              className={`github-icon`}
+              onClick={() =>
+                openInNewTab(
+                  "https://github.com/briceaceugeniu/real-life-rpg-UI"
+                )
+              }
+            />
+          </Tooltip>
         </div>
       </div>
     </Container>

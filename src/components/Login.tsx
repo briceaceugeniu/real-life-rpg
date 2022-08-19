@@ -14,7 +14,6 @@ const Login = () => {
 
   useEffect(() => {
     //todo if cookie with auth_token exist - redirect to main page
-    console.log(12344);
   });
 
   const handleLogInClicked = () => {
