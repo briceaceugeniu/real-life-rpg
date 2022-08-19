@@ -95,3 +95,8 @@ code {
 .fit-content {
   max-width: fit-content;
 }
+
+.github-icon:hover {
+  cursor: pointer;
+  color: cadetblue;
+}
