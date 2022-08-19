@@ -1,5 +1,7 @@
 Disclaimer - this project was made just for fun.
 
+Project website: [https://sandbox.divide-et-impera.at](https://sandbox.divide-et-impera.at)
+
 Here, as in an RPG game, it is about doing something (e.g. killing a monster, completing a task) and
 gaining experience and increasing the player's level.
 
