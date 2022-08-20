@@ -1,10 +1,25 @@
 import React, { useState } from "react";
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { IsValidEmail } from "../helper-functions";
 
 const ForgotPasswd = () => {
   const [error, setError] = useState({ isError: false, msg: " " });
+  const [inputValue, setInputValue] = useState<string>("");
   let navigate = useNavigate();
+
+  const handleSubmitClicked = () => {
+    if (inputValue.length === 0 || !IsValidEmail(inputValue)) {
+      setError({ isError: true, msg: "Invalid email" });
+      return;
+    }
+
+    setError({ isError: false, msg: "" });
+  };
+
+  const handleEmailInputChanged = (value: string) => {
+    setInputValue(value);
+  };
 
   return (
     <Grid
@@ -33,9 +48,15 @@ const ForgotPasswd = () => {
           variant="standard"
           required
           type="email"
+          onChange={(e) => handleEmailInputChanged(e.target.value)}
+          value={inputValue}
           helperText={error.msg}
         />
-        <Button variant="contained" className={`m8`}>
+        <Button
+          variant="contained"
+          className={`m8`}
+          onClick={() => handleSubmitClicked()}
+        >
           Submit
         </Button>
         <Button
