@@ -13,7 +13,10 @@ const Login = () => {
   const cookies = new Cookies();
 
   useEffect(() => {
-    //todo if cookie with auth_token exist - redirect to main page
+    const auth_token = cookies.get("auth_token");
+    if (auth_token) {
+      navigate("/");
+    }
   });
 
   const handleLogInClicked = () => {

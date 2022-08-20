@@ -5,6 +5,7 @@ import ProgressBar from "./ProgressBar";
 import axios from "axios";
 import { API_BASE_URL } from "../../helper-functions";
 import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 interface PropsInterface {
   token: string;
@@ -33,7 +34,8 @@ const AvatarArea = (props: PropsInterface) => {
   let navigate = useNavigate();
 
   const KillTokenGoToLoginPage = () => {
-    // TODO kill token session bla
+    const cookies = new Cookies();
+    cookies.remove("auth_token");
     navigate("/login");
   };
 

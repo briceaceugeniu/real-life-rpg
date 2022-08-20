@@ -1,17 +1,12 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { Container, Grid } from "@mui/material";
 import AvatarArea from "./Avatar/AvatarArea";
 import ExperienceArea from "./Experience/ExperienceArea";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
-import Footer from "./Footer";
+
 export const ChangedExpContext = createContext<any>({});
+
 const MainPage = () => {
   let navigate = useNavigate();
   const [render, setRender] = useState(0);
