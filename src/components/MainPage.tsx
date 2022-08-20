@@ -10,6 +10,7 @@ import AvatarArea from "./Avatar/AvatarArea";
 import ExperienceArea from "./Experience/ExperienceArea";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
+import Footer from "./Footer";
 export const ChangedExpContext = createContext<any>({});
 const MainPage = () => {
   let navigate = useNavigate();
@@ -34,6 +35,7 @@ const MainPage = () => {
           <Grid item xs={12} md={7}>
             <ExperienceArea token={auth_token} />
           </Grid>
+          <Grid item></Grid>
         </Grid>
       </Container>
     </ChangedExpContext.Provider>

@@ -100,3 +100,10 @@ code {
   cursor: pointer;
   color: cadetblue;
 }
+
+.version-area {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 1em;
+}

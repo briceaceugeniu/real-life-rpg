@@ -8,12 +8,14 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Header />
       <App />
+      <Footer />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
