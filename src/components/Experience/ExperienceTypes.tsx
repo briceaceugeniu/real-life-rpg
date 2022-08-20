@@ -36,16 +36,19 @@ const ExperienceTypes = () => {
           onClick={() => handleTabClick("prof")}
           icon={<BusinessCenterIcon />}
           label="Professional"
+          sx={{ fontSize: "0.8em" }}
         />
         <Tab
           onClick={() => handleTabClick("soft_skill")}
           icon={<AddReactionIcon />}
           label="Soft Skill"
+          sx={{ fontSize: "0.8em" }}
         />
         <Tab
           onClick={() => handleTabClick("fitness")}
           icon={<FitnessCenterIcon />}
           label="Fitness"
+          sx={{ fontSize: "0.8em" }}
         />
       </Tabs>
       <div>{expTypes[selTab]}</div>
