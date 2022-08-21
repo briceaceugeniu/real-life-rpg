@@ -6,9 +6,10 @@ Here, as in an RPG game, it is about doing something (e.g. killing a monster, co
 gaining experience and increasing the player's level.
 
 Why is it called Real Life RPG? Right, because the "monsters" you kill here are actually things that
-you will do them in your real life.
+you will do them in **your** real life.
 
-Specifically, it's about things you learn and/or things that improve your life.
+Specifically, it's about things you learn and/or things that improve **your life** - read a book, do a
+fitness workout, follow a tutorial.
 
 At the moment it is mainly made to suit my tastes, but in the future it should be possible to
 dynamically add the kinds of experiences that are relevant to the individual player.

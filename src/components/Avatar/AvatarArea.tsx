@@ -33,10 +33,13 @@ const AvatarArea = (props: PropsInterface) => {
 
   let navigate = useNavigate();
 
-  const KillTokenGoToLoginPage = () => {
-    const cookies = new Cookies();
-    cookies.remove("auth_token");
-    navigate("/login");
+  const HandleFetchDataFail = (KillAuthToken: boolean) => {
+    if (KillAuthToken) {
+      const cookies = new Cookies();
+      cookies.remove("auth_token");
+      navigate("/login");
+    }
+    console.error("Unknown network error");
   };
 
   useEffect(() => {
@@ -56,7 +59,7 @@ const AvatarArea = (props: PropsInterface) => {
 
         if (data.status === "error") {
           console.error(data.msg);
-          KillTokenGoToLoginPage();
+          HandleFetchDataFail(true);
         } else if (data.status === "success") {
           const {
             next_level,
@@ -75,12 +78,12 @@ const AvatarArea = (props: PropsInterface) => {
           });
         } else {
           console.error("Invalid fetched data format.");
-          KillTokenGoToLoginPage();
+          HandleFetchDataFail(false);
         }
       })
       .catch(function (error) {
         console.error(error);
-        KillTokenGoToLoginPage();
+        HandleFetchDataFail(false);
       })
       .then(function () {
         // always executed

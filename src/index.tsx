@@ -15,6 +15,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Header />
       <App />
+      <div style={{ height: "26vh" }}></div>
       <Footer />
     </BrowserRouter>
   </React.StrictMode>,
