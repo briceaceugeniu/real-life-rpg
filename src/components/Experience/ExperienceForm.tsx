@@ -90,22 +90,6 @@ const ExperienceForm = (props: PropsInterface) => {
     setInputValues((obj) => ({ ...obj, learned: inputValues.learned.trim() }));
   };
 
-  const ExperienceCalculator = (obj: InputValuesInterface) => {
-    let exp = 0;
-    let count_type: any = [];
-    count_type["Minutes"] = 0.75;
-    count_type["Pages"] = 1;
-    count_type["Km"] = 2;
-
-    if (obj.name) exp += 50;
-    if (obj.source) exp += 30;
-    if (obj.count > 0 && obj.count_type !== null)
-      exp += obj.count * count_type[obj.count_type];
-    if (obj.learned) exp += obj.learned.length;
-
-    return Math.ceil(exp);
-  };
-
   const { render, setRender } = useContext(ChangedExpContext);
 
   const handleSaveBtnClicked = () => {
@@ -121,9 +105,6 @@ const ExperienceForm = (props: PropsInterface) => {
     const auth_token = cookies.get("auth_token");
 
     const completeData = { ...inputValues, auth_token: auth_token };
-
-    const gainedExp = ExperienceCalculator(inputValues);
-    console.log(completeData);
 
     axios
       .post(API_BASE_URL + "/rlrpg_save_exp.php", completeData)
