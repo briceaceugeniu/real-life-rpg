@@ -100,7 +100,7 @@ const PastExperiences = (props: PropsInterface) => {
         if (data.status === "error") {
           console.error(data.msg);
         } else if (data.status === "success") {
-          if (list.length === 0) {
+          if (data.data.length !== 0) {
             setList(data.data);
           }
         } else {
