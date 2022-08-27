@@ -111,3 +111,6 @@ code {
   left: 0;
   margin: 1em;
 }
+.avatar_area {
+  filter: blur(5px);
+}

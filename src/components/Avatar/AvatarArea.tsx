@@ -30,6 +30,7 @@ let userParam: UserParamInterface = {
 
 const AvatarArea = (props: PropsInterface) => {
   const [userData, setUserData] = useState(userParam);
+  const [blurred, setBlurred] = useState(true);
 
   let navigate = useNavigate();
 
@@ -76,6 +77,7 @@ const AvatarArea = (props: PropsInterface) => {
             name: user_name,
             rank: user_rank,
           });
+          setBlurred(false);
         } else {
           console.error("Invalid fetched data format.");
           HandleFetchDataFail(false);
@@ -91,7 +93,7 @@ const AvatarArea = (props: PropsInterface) => {
   }, [props.render]);
 
   return (
-    <div className={`minH-60vh`}>
+    <div className={`minH-60vh ${blurred ? "avatar_area" : ""}`}>
       <Rank level={userData.rank} rank_name={userData.rank_name} />
       <Avatar name={userData.name} rank_name={userData.rank_name} />
       <ProgressBar exp={userData.exp} next_level={userData.next_level} />

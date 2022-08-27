@@ -128,10 +128,7 @@ const PastExperiences = (props: PropsInterface) => {
         count: sel_exp.count,
         count_type: sel_exp.count_type,
         private: sel_exp.private === 0 ? "Is public" : "Is Private",
-        source:
-          sel_exp.source.length > 30
-            ? sel_exp.source.substring(0, 30) + "..."
-            : sel_exp.source,
+        source: sel_exp.source,
         learned: sel_exp.learned,
       },
     });
@@ -194,6 +191,15 @@ const PastExperiences = (props: PropsInterface) => {
     return url.protocol === "http:" || url.protocol === "https:";
   }
 
+  const DisplaySource = (source: string) => {
+    const a_text =
+      source.length > 30 ? source.substring(0, 30) + "..." : source.length;
+    if (isValidHttpUrl(source)) {
+      return <a href={source}>{a_text}</a>;
+    }
+    return source;
+  };
+
   return (
     <Grid item xs={12} md={12} sx={{ overflow: "auto", height: "83%" }}>
       <Demo>
@@ -255,11 +261,7 @@ const PastExperiences = (props: PropsInterface) => {
             {modal.data.source ? (
               <>
                 <span className={`font-bold`}>Source: </span>
-                {isValidHttpUrl(modal.data.source) ? (
-                  <a href={modal.data.source}>{modal.data.source}</a>
-                ) : (
-                  <>{modal.data.source}</>
-                )}
+                {DisplaySource(modal.data.source)}
               </>
             ) : (
               ""
