@@ -42,12 +42,16 @@ code {
   font-size: xxx-large;
 }
 
+.font-bold {
+  font-weight: bold;
+}
+
 .font-mono {
   font-family: monospace;
 }
 
 .minH-60vh {
-  min-height: 60vh;
+  height: 60vh;
   background-color: whitesmoke;
   border: 3px solid #eef3eb;
   border-radius: 6px;
